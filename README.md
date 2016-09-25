@@ -6,11 +6,15 @@ loading.start <- matrix("", 8, 3)
 loading.start[1:3, 1] <- 0.7
 loading.start[4:6, 2] <- 0.7
 loading.start[7:8, 3] <- "rnorm(1, 0.6, 0.05)"
+#Erase 
 loading.trivial <- matrix("runif(1, -0.2, 0.2)", 8, 3)
 loading.trivial[is.na(loading)] <- 0
 LY <- bind(loading, loading.start, misspec=loading.trivial)
 
+#Just says that all of the error correlations are 1 for the variances and normally distributed for others
 error.cor.trivial <- matrix("rnorm(1, 0, 0.1)", 8, 8)
+#error.cor.trivial <- matrix(0, 8, 8) #Can set these to zero and it works find
+
 diag(error.cor.trivial) <- 1
 RTE <- binds(diag(8), misspec=error.cor.trivial) 
 
