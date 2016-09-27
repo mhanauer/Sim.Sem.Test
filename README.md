@@ -2,12 +2,12 @@
 loading <- matrix(0, 8, 3)
 loading[1:3, 1] <- NA
 loading[4:6, 2] <- NA
-loading[7:8, 3] <- NA # Changed this NA
-loading.start <- matrix("", 8, 3); loading.start
+loading[7:8, 3] <- "con1"
+loading.start <- matrix("", 8, 3)
 loading.start[1:3, 1] <- 0.7
 loading.start[4:6, 2] <- 0.7
-loading.start[7:8, 3] <- 0.7# Changed this .7
-#Erase 
+loading.start[7:8, 3] <- "rnorm(1, 0.6, 0.05)"
+
 loading.trivial <- matrix("runif(1, -0.2, 0.2)", 8, 3)
 loading.trivial[is.na(loading)] <- 0
 LY <- bind(loading, loading.start, misspec=loading.trivial)
@@ -18,7 +18,7 @@ error.cor.trivial <- matrix("rnorm(1, 0, 0.1)", 8, 8)
 
 diag(error.cor.trivial) <- 1
 RTE <- binds(diag(8), misspec=error.cor.trivial) 
-
+#Can I make this zero
 factor.cor <- diag(3)
 factor.cor[1, 2] <- factor.cor[2, 1] <- NA
 RPS <- binds(factor.cor, 0.5)
@@ -36,4 +36,3 @@ Output <- sim(50, n=300, SEM.model)
 getCutoff(Output, 0.05)
 plotCutoff(Output, 0.05)
 summary(Output)
-
