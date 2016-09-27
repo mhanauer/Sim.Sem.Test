@@ -2,11 +2,11 @@
 loading <- matrix(0, 8, 3)
 loading[1:3, 1] <- NA
 loading[4:6, 2] <- NA
-loading[7:8, 3] <- "con1"
-loading.start <- matrix("", 8, 3)
+loading[7:8, 3] <- NA # Changed this NA
+loading.start <- matrix("", 8, 3); loading.start
 loading.start[1:3, 1] <- 0.7
 loading.start[4:6, 2] <- 0.7
-loading.start[7:8, 3] <- "rnorm(1, 0.6, 0.05)"
+loading.start[7:8, 3] <- 0.7# Changed this .7
 #Erase 
 loading.trivial <- matrix("runif(1, -0.2, 0.2)", 8, 3)
 loading.trivial[is.na(loading)] <- 0
@@ -36,3 +36,4 @@ Output <- sim(50, n=300, SEM.model)
 getCutoff(Output, 0.05)
 plotCutoff(Output, 0.05)
 summary(Output)
+
