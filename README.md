@@ -1,4 +1,4 @@
-#Want to get rid of the constraints
+#Got rid of constraints
 loading <- matrix(0, 8, 3)
 loading[1:3, 1] <- NA
 loading[4:6, 2] <- NA
