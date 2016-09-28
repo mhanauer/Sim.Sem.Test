@@ -1,27 +1,29 @@
+#This version got rid of the constraints and set the correlation between factors to zero 
 #Got rid of constraints
+library(lavaan)
+library(simsem)
 loading <- matrix(0, 8, 3)
 loading[1:3, 1] <- NA
 loading[4:6, 2] <- NA
-loading[7:8, 3] <- NA
+loading[7:8, 3] <- NA; loading
 loading.start <- matrix("", 8, 3)
 loading.start[1:3, 1] <- 0.7
 loading.start[4:6, 2] <- 0.7
-loading.start[7:8, 3] <- "rnorm(1, 0.6, 0.05)"
+loading.start[7:8, 3] <- "rnorm(1, 0.6, 0.05)"; loading.start
 
 loading.trivial <- matrix("runif(1, -0.2, 0.2)", 8, 3)
 loading.trivial[is.na(loading)] <- 0
 LY <- bind(loading, loading.start, misspec=loading.trivial)
 
 #Just says that all of the error correlations are 1 for the variances and normally distributed for others
-error.cor.trivial <- matrix("rnorm(1, 0, 0.1)", 8, 8)
+error.cor.trivial <- matrix("rnorm(1, 0, 0.1)", 8, 8); error.cor.trivial
 #error.cor.trivial <- matrix(0, 8, 8) #Can set these to zero and it works find
-
 diag(error.cor.trivial) <- 1
 RTE <- binds(diag(8), misspec=error.cor.trivial) 
-#Can I make this zero
+
+#Revised with all zeros and the parenthesis factor cor meaning there is no relationship between factors
 factor.cor <- diag(3)
-factor.cor[1, 2] <- factor.cor[2, 1] <- NA
-RPS <- binds(factor.cor, 0.5)
+RPS <- binds(factor.cor, 0.0); RPS
 
 path <- matrix(0, 3, 3)
 path[3, 1:2] <- NA
