@@ -12,7 +12,7 @@ loading.start <- matrix("", 9, 3); loading.start
 loading.start[1:3, 1] <- 0.7
 loading.start[4:6, 2] <- 0.7
 loading.start[7:9, 3] <- 0.7; loading.start
-
+#Cross loading or loadings among indicators of different factors are random instead of zero
 loading.trivial <- matrix("runif(1, -0.2, 0.2)", 9, 3)
 loading.trivial[is.na(loading)] <- 0
 LY <- bind(loading, loading.start, misspec=loading.trivial); LY
