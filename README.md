@@ -7,7 +7,7 @@ library(simsem)
 loading <- matrix(0, 9, 3); loading
 loading[1:3, 1] <- NA
 loading[4:6, 2] <- NA
-loading[7:8, 3] <- NA; loading
+loading[7:9, 3] <- NA; loading
 loading.start <- matrix("", 9, 3); loading.start
 loading.start[1:3, 1] <- 0.7
 loading.start[4:6, 2] <- 0.7
