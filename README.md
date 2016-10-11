@@ -35,7 +35,10 @@ BE <- bind(path, path.start); BE
 
 SEM.model <- model(BE=BE, LY=LY, RPS=RPS, RTE=RTE, modelType="SEM")
 
-Output <- sim(NULL, n=500:1000, SEM.model) 
+Output <- sim(NULL, n=50:500, SEM.model) 
 getCutoff(Output, 0.05)
 plotCutoff(Output, 0.05)
+Cpow <- getPower(Output)
+findPower(Cpow, "N", 0.80)
+
 summary(Output)
